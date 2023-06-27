@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>
+        <input id="input" type="text">
+        <pre id="out"></pre>
+    </h3>
+    
+    <script>
+        const out = document.getElementById('out')
+        const input = document.getElementById('input')
+        input.onkeydown = e =>{
+            if ( e.key === 'Enter') {
+                send(e.target.value)
+            }
+        }
+
+        function send(prompt) {
+            const url = new URL('/chat', location.href)
+            url.searchParams.set('prompt', prompt)
+
+            const es = new EventSource(url)
+            out.innerHTML = ''
+            es.onmessage = e => {
+                // console.log(e.data);
+                if(e.data === '[DONE]') {
+                    return es.close()
+                }
+                const data = JSON.parse(e.data)
+                const { content='' } = data.choices[0].delta
+                out.innerHTML += content
+                console.log(content)
+            }
+        }
+
+        // send('你好')
+    </script>
+</body>
+</html>
