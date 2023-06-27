@@ -6,7 +6,8 @@ import { SocksProxyAgent } from 'socks-proxy-agent';
 import { Stream } from 'stream';
 
 const api = axios.create({
-    baseURL: 'https://api.openai.com/v1',
+    // baseURL: 'https://api.openai.com/v1',
+    baseURL: 'https://openai-api.ikechan8370.com/v1',
     headers: {
         Authorization : `Bearer ${process.env.OPENAI_API_KEY}`
     },
