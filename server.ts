@@ -2,16 +2,16 @@ import axios from 'axios';
 import 'dotenv/config';
 import { createReadStream } from 'fs';
 import { createServer } from "http";
-import { SocksProxyAgent } from 'socks-proxy-agent';
 import { Stream } from 'stream';
 
 const api = axios.create({
     // baseURL: 'https://api.openai.com/v1',
     baseURL: 'https://openai-api.ikechan8370.com/v1',
     headers: {
+        Library: 'Venti',
         Authorization : `Bearer ${process.env.OPENAI_API_KEY}`
     },
-    httpsAgent: new SocksProxyAgent(process.env.SOCKS_PROXY!)
+    // httpsAgent: new SocksProxyAgent(process.env.SOCKS_PROXY!)
 })
 
 createServer(async (req, res) => {
