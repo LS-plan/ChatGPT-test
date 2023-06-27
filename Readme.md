@@ -13,7 +13,7 @@ git clone --depth=1 https://gitee.com/LS-plan/ChatGPT-test.git ./plugins/chatgpt
 **# 执行下面步骤进入目录**
 
 ```
-cd plugins/chatgpt-plugin
+cd plugins/chatgpt-test
 ```
 
 **# 安装依赖**
