@@ -34,12 +34,13 @@ createServer(async (req, res) => {
             const { data } = await api.post<Stream>('chat/completions', {
                 "model": "gpt-3.5-turbo",
                 "messages": [{"role": "user", "content": query.prompt}],
-                max_tokens: 100,
+                max_tokens: 2000,
                 stream: true,
                 }, {
                     responseType: 'stream'
                 })
             data.pipe(res)
+            // console.log(res)
             // res.end(JSON.stringify(data))
             break;
         default:

@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <title>Document</title>
+    <style type="text/css">
+        .reply{  
+            width: 100%;  
+            height: auto;  
+            word-wrap:break-word;  
+            word-break:break-all;  
+            overflow: hidden; 
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 600px)" href="style/css/css600.css" />
 </head>
 <body>
+    <h2>ISSYのGPT</h2>
+    <input id="input" type="text">
+    <button id="sendbtn" onclick="sendreq()">提交</button>
     <h3>
-        <input id="input" type="text">
-        <pre id="out"></pre>
+        <div id="out" class="reply"></d>
     </h3>
     
     <script>
@@ -19,6 +31,11 @@
             if ( e.key === 'Enter') {
                 send(e.target.value)
             }
+        }
+
+        function sendreq(){
+            const o = document.getElementById('input')
+            send(o.value.toString())
         }
 
         function send(prompt) {
@@ -33,7 +50,7 @@
                     return es.close()
                 }
                 const data = JSON.parse(e.data)
-                const { content='' } = data.choices[0].delta
+                const { content = '' } = data.choices[0].delta
                 out.innerHTML += content
                 console.log(content)
             }
@@ -43,3 +60,4 @@
     </script>
 </body>
 </html>
+
